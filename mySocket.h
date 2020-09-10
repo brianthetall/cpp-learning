@@ -114,8 +114,8 @@ public:
   
   string readString(){
 
-    memset(input,0,sizeof(input));
-    read( new_socket , input, sizeof(input) );
+    memset(input,0,buffer);
+    read( new_socket , input, buffer );
     string inputStr{input};
     return inputStr;
 

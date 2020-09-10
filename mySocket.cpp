@@ -1,7 +1,7 @@
 #include <iostream>
 #include "mySocket.h"
 
-#define BUFFER 1024
+#define BUFFER 100
 
 using namespace std;
 
@@ -11,7 +11,7 @@ int main(int argc,char **argv){
   Type type;
   string sendString{""};
   
-  if ( argc == 3 ){//ip,port
+  if ( argc == 3 ){//ip,port,bufferSize
     //setup as client
     type=Type::CLIENT;
     string ip{ *++argv };
@@ -19,7 +19,7 @@ int main(int argc,char **argv){
     socket=MySocket{ ip,port,BUFFER };
     
   }
-  else if ( argc == 2 ){//port
+  else if ( argc == 2 ){//port,bufferSize
     //setup as server
     type=Type::SERVER;
     int port = atoi( *++argv );
@@ -31,7 +31,7 @@ int main(int argc,char **argv){
 
     while(true){
       cout<<socket.readString()<<endl;
-      cin>>sendString;
+      getline(cin,sendString);
       socket.sendString(sendString);
     }
 
@@ -40,7 +40,7 @@ int main(int argc,char **argv){
   if (type == Type::CLIENT){
   
     while(true){
-      cin>>sendString;
+      getline(cin,sendString);
       socket.sendString(sendString);
       cout<<socket.readString()<<endl;
     }
