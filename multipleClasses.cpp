@@ -11,7 +11,8 @@ class Coordinate{
   char row;
   int column;
 public:
-  Coordinate(char row,int column);
+  Coordinate(){};
+  Coordinate(char row,int column):row{row},column{column}{};
 };
 
 
@@ -19,18 +20,18 @@ class Piece{
   string name;
   unique_ptr<Location> l;
 public:
-  Piece(string name);
+  Piece(){}
+  Piece(string name):name{name}{}
   string toString() const;
 };
 
 class Location{
-  Coordinate c;
-  Piece p;
+  Coordinate *coordinate;
+  Piece *piece;
+public:
+  Location();
+  Location(Coordinate& c, Piece& p):coordinate{&c},piece{&p}{}
 };
-
-Piece::Piece(string name){
-  this->name=name;
-}
 
 string Piece::toString() const{
   return name;
@@ -40,6 +41,10 @@ string Piece::toString() const{
   
 int main(int argc,char **argv){
 
+  Coordinate* coordinate=new Coordinate{'a',3};
+  Piece* piece=new Piece{"pieCeName"};
+  
+  Location l{*coordinate,*piece};
   return 0;
 
 }
