@@ -35,6 +35,7 @@ class EzSql{
   void createDb(string dbName);
   void createTable(string db,string tableName);
   void insertJsonFile(string fileName);
+  string selectElement(string name);
   void dropDb(string dbName);
   void dropTable(string tableName);
   void close(void);

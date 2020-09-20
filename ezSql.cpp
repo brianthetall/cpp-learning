@@ -72,7 +72,7 @@ void EzSql::insertJsonFile(string fileName){
     }
     
     ss<<name<<"','{"<<ss2.str()<<"}');";
-    cout<<"DEBUG: "<<ss.str()<<endl;
+    cout<<ss.str()<<endl;
     insertCmd=ss.str();
     ss.str("");
     ss2.str("");
@@ -85,6 +85,21 @@ void EzSql::insertJsonFile(string fileName){
   }
 
     
+}
+
+//can i return a json object instead?
+string EzSql::selectElement(string name){
+
+  stringstream ss{""};
+  ss<<"select * from partsTable where name='"<<name<<"';";
+  if (mysql_query(connector, ss.str().data() ))
+    cout<<mysql_error(connector)<<endl;
+
+  MYSQL_RES *result=mysql_store_result(connector);
+  MYSQL_ROW row;
+
+  row=mysql_fetch_row(result);
+  return row[0];
 }
 
 void EzSql::dropDb(string dbName){

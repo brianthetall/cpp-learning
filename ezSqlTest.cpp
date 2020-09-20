@@ -10,8 +10,10 @@ int main (){
   sql.createDb("opc");
   cout<<sql.status()<<endl;
   sql.createTable("opc","partsTable");
-  //insert some parts....
   sql.insertJsonFile("ezSql.json");
+  cout<<sql.selectElement("rtd0")<<endl;
+  cout<<sql.selectElement("vfd0")<<endl;
+  cout<<sql.selectElement("levelSensor0")<<endl;
 
   cout<<"Ready to drop table?"<<endl;
   cin>>input;
