@@ -6,6 +6,7 @@
 #include <string>
 #include <iostream>
 #include <sstream>
+#include <map>
 
 using namespace std;
 
@@ -36,6 +37,7 @@ class EzSql{
   void createTable(string db,string tableName);
   void insertJsonFile(string fileName);
   string selectElement(string name);
+  map<string,string> selectElementMap(string name);
   void dropDb(string dbName);
   void dropTable(string tableName);
   void close(void);

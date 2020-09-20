@@ -12,6 +12,10 @@ int main (){
   sql.createTable("opc","partsTable");
   sql.insertJsonFile("ezSql.json");
   cout<<sql.selectElement("rtd0")<<endl;
+  map<string,string> rtdMap=sql.selectElementMap("rtd0");
+  for(auto& s:rtdMap)
+    cout<<s.first<<":"<<s.second<<endl;
+  
   cout<<sql.selectElement("vfd0")<<endl;
   cout<<sql.selectElement("levelSensor0")<<endl;
 

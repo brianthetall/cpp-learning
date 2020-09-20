@@ -102,6 +102,29 @@ string EzSql::selectElement(string name){
   return row[0];
 }
 
+map<string,string> EzSql::selectElementMap(string name){
+
+  stringstream ss{""};
+  ss<<this->selectElement(name);
+  cout<<"debug="<<ss.str()<<endl;
+  
+  boost::property_tree::ptree pt;
+  read_json(ss,pt);
+
+  map<string,string> retval{};
+  //define the map by traversing the ptree:
+  for(auto& array_element : pt)
+    retval[array_element.first]=array_element.second.get_value < std::string > ();
+
+  /*
+  for(auto& s : retval)
+    cout<<s.first<<":"<<s.second<<endl;
+  */
+  
+  return retval;
+  
+}
+
 void EzSql::dropDb(string dbName){
 
   verifyConnection();
