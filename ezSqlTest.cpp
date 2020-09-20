@@ -7,12 +7,12 @@ int main (){
   EzSql sql{"user","passwd"};
   string input{""};
   
-  sql.createDb("hat");
+  sql.createDb("opc");
 
   cout<<"Ready to drop table?"<<endl;
   cin>>input;
 
-  sql.dropDb("hat");
+  sql.dropDb("opc");
   
   sql.close();
   

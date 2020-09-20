@@ -12,6 +12,8 @@ class EzSql{
   MYSQL *connector;
   string user,passwd;
 
+  void verifyConnection(void);
+
  public:
   EzSql(string username,string password):user{username},passwd{password}{
 
@@ -31,5 +33,6 @@ class EzSql{
   void createDb(string dbName);
   void dropDb(string dbName);
   void close(void);
+  string status(void);
 
 };
