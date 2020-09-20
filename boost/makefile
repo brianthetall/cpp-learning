@@ -7,4 +7,4 @@ json: json.o
 	$(CC) -o json json.o
 
 clean:
-	rm -rf clocks.o clocks
+	rm -rf clocks.o clocks json.o json

@@ -1,3 +1,5 @@
+#include "boost/property_tree/ptree.hpp"
+#include "boost/property_tree/json_parser.hpp"
 #include <mariadb/mysql.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -31,7 +33,10 @@ class EzSql{
   };
 
   void createDb(string dbName);
+  void createTable(string db,string tableName);
+  void insertJsonFile(string fileName);
   void dropDb(string dbName);
+  void dropTable(string tableName);
   void close(void);
   string status(void);
 

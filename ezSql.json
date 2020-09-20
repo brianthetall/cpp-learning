@@ -1,0 +1,7 @@
+[
+    
+    {"name":"levelSensor0","level":70,"power":24},
+    {"name":"rtd0","temperature":100,"type":"3-wire"},
+    {"name":"vfd0","speedPercent":26,"power":480}
+    
+]
