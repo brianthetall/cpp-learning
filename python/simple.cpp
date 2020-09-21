@@ -1,6 +1,6 @@
-#include <iostream>
+#define PY_SSIZE_T_CLEAN
 #include <python3.7m/Python.h>
-
+#include <iostream>
 
 int main(int argc, char **argv){
 
