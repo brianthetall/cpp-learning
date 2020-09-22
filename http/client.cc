@@ -15,21 +15,40 @@ using namespace std;
 
 int main(int argc , char **argv) {
 
+  int args=argc;
   string url{*++argv};
   cout<<"url="<<url<<endl;
-  
+
+  /*
 #ifdef CPPHTTPLIB_OPENSSL_SUPPORT
   cout<<"ssl"<<endl;
   //httplib::SSLClient cli("localhost", 8080);
   //httplib::SSLClient cli("google.com");
-  httplib::SSLClient cli(url);
+  //  httplib::SSLClient cli(url);
   cli.set_ca_cert_path(CA_CERT_FILE);
   cli.enable_server_certificate_verification(true);
 #else
-  httplib::Client cli("localhost", 80);
+httplib::Client cli("localhost", 8086);  
 #endif
+  */
 
-  if (auto res = cli.Get("/hi")) {
+  httplib::Client cli("localhost", 8086);
+  
+  try{
+    httplib::Params p;
+    p.emplace("q","CREATE DATABASE pie");
+    auto result=cli.Post("/query",p);
+    
+    cout << result->status << endl;
+    cout << result->get_header_value("Content-Type") << endl;
+    cout << result->body << endl;
+  }
+  catch(...){
+    cout<<"err"<<endl;
+  }
+  
+  /*
+  if (auto res = cli.Get("/")) {
     cout << res->status << endl;
     cout << res->get_header_value("Content-Type") << endl;
     cout << res->body << endl;
@@ -42,6 +61,7 @@ int main(int argc , char **argv) {
     }
 #endif
   }
-
+  */
+  
   return 0;
 }
