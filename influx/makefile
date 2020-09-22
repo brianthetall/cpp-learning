@@ -1,5 +1,5 @@
-#CXX = clang++
-CXX=g++
+CXX = clang++
+#CXX=g++
 CXXFLAGS = -std=c++11 -I. -Wall -Wextra -pthread
 
 BROTLI_DIR = /usr/bin/brotli
@@ -12,7 +12,7 @@ ZLIB_SUPPORT = -DCPPHTTPLIB_ZLIB_SUPPORT -lz
 all: influxConnector
 
 influxConnector : influxConnector.cpp main.cpp ./httplib.h ./influxConnector.h makefile
-	$(CXX) -o influxConnector $(CXXFLAGS) main.cpp influxConnector.cpp $(OPENSSL_SUPPORT) $(ZLIB_SUPPORT)
+	$(CXX) -o influxConnector $(CXXFLAGS) main.cpp influxConnector.cpp $(OPENSSL_SUPPORT) $(ZLIB_SUPPORT) 
 
 pem:
 	openssl genrsa 2048 > key.pem
