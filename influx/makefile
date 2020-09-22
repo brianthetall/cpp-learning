@@ -11,8 +11,8 @@ ZLIB_SUPPORT = -DCPPHTTPLIB_ZLIB_SUPPORT -lz
 
 all: influxConnector
 
-influxConnector : influxConnector.cpp ./httplib.h makefile
-	$(CXX) -o influxConnector $(CXXFLAGS) influxConnector.cc $(OPENSSL_SUPPORT) $(ZLIB_SUPPORT)
+influxConnector : influxConnector.cpp main.cpp ./httplib.h ./influxConnector.h makefile
+	$(CXX) -o influxConnector $(CXXFLAGS) main.cpp influxConnector.cpp $(OPENSSL_SUPPORT) $(ZLIB_SUPPORT)
 
 pem:
 	openssl genrsa 2048 > key.pem

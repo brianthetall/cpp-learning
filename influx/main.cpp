@@ -1,6 +1,8 @@
 #include <iostream>
 #include <influxConnector.h>
 
+using namespace std;
+
 int main(int argc,char **argv){
 
   string serverAddress,input;
@@ -17,7 +19,7 @@ int main(int argc,char **argv){
     return -1;
   }
   
-  InfluxConnector con{serverAddress,port};
+  influx::InfluxConnector con{serverAddress,port};
   con.createDatabase("generatedDB");
   //add some things
 
