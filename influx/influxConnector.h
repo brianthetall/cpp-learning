@@ -4,6 +4,7 @@
 #include <memory>
 #include <sstream>
 #include <utility>
+#include <map>
 
 #define CA_CERT_FILE "./ca-bundle.crt"
 
@@ -31,12 +32,16 @@ namespace influx{
 
     //write to database
     template <typename T>
-    int write(const string db,const string measurement,const T data){
+    int write(const string db,const string measurement,const map<string,string> metadata,const T data){
 
       int returnCode;
       string cmd="/write?db="+db;
       stringstream ss{""};
-      ss<<measurement<<",value="<<data;
+      ss<<measurement;
+      for(auto& param : metadata){
+	ss<<","<<param.first<<"="<<param.second;
+      }
+      ss<<" value="<<data;
 
       try{
 	auto res=client->Post(cmd.data(),ss.str(),"application/octet-stream");
