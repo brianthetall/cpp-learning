@@ -14,10 +14,16 @@ namespace influx{
 
   class InfluxConnector{
 
+  private:
+    
     string address;
     int port;
     unique_ptr<httplib::Client> client;
 
+    bool pingConnection(void);//true if connected
+    void reconnect(void);
+
+    
   public:
 
     InfluxConnector(string addr,int port):address{addr},port{port}{
@@ -28,9 +34,10 @@ namespace influx{
     
     int createDatabase(string name);
     int dropDatabase(string name);
-    //set retention policy
+    void ensureConnection(void);
+    int setRetention();//set retention policy
 
-    //write to database
+    //-----------------write to database--------------------------
     template <typename T>
     int write(const string db,const string measurement,const map<string,string> metadata,const T data){
 
@@ -44,6 +51,7 @@ namespace influx{
       ss<<" value="<<data;
 
       try{
+	ensureConnection();
 	auto res=client->Post(cmd.data(),ss.str(),"application/octet-stream");
 	cout << res->status << endl;
 	cout << res->get_header_value("Content-Type") << endl;
@@ -56,8 +64,8 @@ namespace influx{
       }
   
       return returnCode;
-
     }
+    //------------end write to database--------------------------
 
   };
 

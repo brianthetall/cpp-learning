@@ -23,15 +23,15 @@ int main(int argc,char **argv){
   
   influx::InfluxConnector con{serverAddress,port};
   con.createDatabase("generatedDB");
-
+  
   //add some things
   map<string,string> params{
 			    {"one","1"},
 			    {"two","2"}
   };
-  
   con.write("generatedDB","levelSensor",params,100);
   con.write("generatedDB","temperatureSensor",params,69);
+
   
   cout<<"Press any key to drop DB"<<endl;
   cin>>input;
