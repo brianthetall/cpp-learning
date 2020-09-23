@@ -22,7 +22,7 @@ int main(int argc,char **argv){
   }
   
   influx::InfluxConnector con{serverAddress,port};
-  con.createDatabase("generatedDB");
+  con.createDatabase("generatedDB",1,influx::Units::DAY,"oneDay");
   
   //add some things
   map<string,string> params{

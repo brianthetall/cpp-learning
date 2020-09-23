@@ -12,6 +12,8 @@ using namespace std;
 
 namespace influx{
 
+  enum class Units{HOUR,DAY};
+
   class InfluxConnector{
 
   private:
@@ -32,10 +34,9 @@ namespace influx{
     }
     ~InfluxConnector(){}
     
-    int createDatabase(string name);
+    int createDatabase(string name,int duration,Units unit,string policyName);
     int dropDatabase(string name);
     void ensureConnection(void);
-    int setRetention();//set retention policy
 
     //-----------------write to database--------------------------
     template <typename T>
