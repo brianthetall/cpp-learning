@@ -10,13 +10,13 @@ public:
   tea(string name):teaType{name}{}
   ~tea(){}
   string getType(){return teaType;}
+
+  friend ostream &operator<<(ostream& stream,tea& t){
+    stream << t.getType();
+    return stream;
+  }
   
 };
-
-ostream& operator<<(ostream& stream,tea& t){
-  stream << t.getType();
-  return stream;
-}
 
 int main(void){
 
