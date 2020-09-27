@@ -13,6 +13,5 @@ example:
 
 clean:
 	rm getForm.cgi
-
-
+	rm example.cgi
 
