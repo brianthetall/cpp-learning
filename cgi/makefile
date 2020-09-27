@@ -4,6 +4,9 @@ FLAGS = -std=c++11 -I. -Wall -Wextra -lcgicc
 getForm:
 	$(CC) getForm.cpp -o getForm.cgi $(FLAGS)
 
+example:
+	$(CC) cgicc_example.cpp -o example.cgi $(FLAGS)
+
 clean:
 	rm getForm.cgi
 
